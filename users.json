@@ -1,0 +1,33 @@
+{
+    "228x1a05c9@khitguntur.ac.in": {
+        "password": "__19sravs"
+    },
+    "sravs@123": {
+        "password": "junnu"
+    },
+    "sravs@12": {
+        "password": "JUNNU"
+    },
+    "ammu@143": {
+        "password": "ammulu"
+    },
+    "sanjay@24": {
+        "password": "sanju"
+    },
+    "sravs@19": {
+        "password": "chitti",
+        "user_id": "junnu_19"
+    },
+    "junnu_19": {
+        "password": "chitti",
+        "email": "sravs@19"
+    },
+    "ammu@1743": {
+        "password": "hhhjbnkjgydfdfgh",
+        "user_id": "junnu_1_9"
+    },
+    "junnu_1_9": {
+        "password": "hhhjbnkjgydfdfgh",
+        "email": "ammu@1743"
+    }
+}

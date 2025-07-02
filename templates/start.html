@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome - Capture Moments</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url("{{ url_for('static', filename='images/pexels-jefriwibawa-1387037.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+        }
+
+        .overlay {
+            background: rgba(0, 0, 0, 0.6);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .glass-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-box h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .glass-box p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+            min-height: 1.5em;
+        }
+
+        .action-btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+        }
+
+        .action-btn.login {
+            background: linear-gradient(to right, #007bff, #0056b3);
+        }
+
+        .action-btn.signup {
+            background: linear-gradient(to right, #28a745, #1e7e34);
+        }
+
+        .action-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="glass-box">
+            <h1>📸 Welcome to <span style="color:#ffd700">Capture Moments</span></h1>
+            <p id="tagline"></p>
+
+            <a href="{{ url_for('login') }}" class="action-btn login">Login</a>
+            <a href="{{ url_for('signup') }}" class="action-btn signup">Sign Up</a>
+        </div>
+    </div>
+
+    <script>
+        const tagline = "Capture stories. Book magic. Relive moments.";
+        let i = 0;
+        function typeEffect() {
+            if (i < tagline.length) {
+                document.getElementById("tagline").innerHTML += tagline.charAt(i);
+                i++;
+                setTimeout(typeEffect, 60);
+            }
+        }
+        window.onload = typeEffect;
+    </script>
+</body>
+</html>

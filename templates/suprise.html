@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>🎁 Your Surprise Photographer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+            color: #eee;
+        }
+        .btn-book {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            font-weight: bold;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 50px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        .btn-book:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>🎉 Your Surprise Photographer is: <strong>{{ photographer.name }}</strong></h2>
+        <img src="{{ url_for('static', filename='images/' + photographer.image) }}" alt="{{ photographer.name }}">
+        <p><strong>Category:</strong> {{ photographer.category }}</p>
+        <p><strong>Skills:</strong> {{ photographer.skills | join(', ') }}</p>
+        <p><strong>Available Dates:</strong></p>
+        <ul>
+            {% for date in dates %}
+                <li>📅 {{ date }}</li>
+            {% endfor %}
+        </ul>
+        <form action="{{ url_for('book') }}" method="post">
+            <input type="hidden" name="photographer_id" value="{{ photographer.id }}">
+            <label>Select Date:</label>
+            <select name="date" required class="form-control mt-2 mb-3">
+                {% for date in dates %}
+                    <option value="{{ date }}">{{ date }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn-book">Book This Photographer</button>
+        </form>
+    </div>
+</body>
+</html>

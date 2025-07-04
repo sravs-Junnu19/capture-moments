@@ -24,14 +24,12 @@ chat_table = dynamodb.Table('ChatMessages')
 
 # Sample photographer and availability data
 photographers = [
-    {"id": "eshan", "name": "Eshan", "skills": ["Cinematic Edits", "Drone Shots", "Fashion Editorial", "360 Photography", "Concept Shoots"], "category": "Next-Gen Surprise Pro", "image": "eshan.jpg", "cost": 20000},
     {"id": "krish", "name": "Krish", "skills": ["Wedding", "Couple", "Beach"], "category": "Thematic Shoots", "image": "krish.jpg", "cost": 80000},
     {"id": "megha", "name": "Megha", "skills": ["Destination", "Luxury", "Palace"], "category": "Luxury & Destination Shoots", "image": "megha.jpg", "cost": 120000},
     {"id": "leo", "name": "Leo", "skills": ["Creative", "Conceptual", "Art"], "category": "Creative & Conceptual", "image": "leo.jpg", "cost": 95000}
 ]
 
 availability_data = {
-    "eshan": ["2025-07-03", "2025-07-07"],
     "krish": ["2025-06-20", "2025-06-23"],
     "megha": ["2025-06-19", "2025-06-22"],
     "leo": ["2025-06-21", "2025-06-24"]

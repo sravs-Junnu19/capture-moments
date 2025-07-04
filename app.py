@@ -25,14 +25,7 @@ app = Flask(__name__)
 app.secret_key = 'your-secret-key'
 
 photographers = [
-    {
-        "id": "eshan",
-    "name": "Eshan",
-    "skills": ["Cinematic Edits", "Drone Shots", "Fashion Editorial", "360 Photography", "Concept Shoots"],
-    "category": "Next-Gen Surprise Pro",
-    "image": "eshan.jpg",  # Make sure this exists in /static/images/
-    "cost": 20000
-    },
+
     {
         "id": "krish",
         "name": "Krish",
@@ -60,7 +53,7 @@ photographers = [
 ]
 
 availability_data = {
-    "eshan": ["2025-07-03", "2025-07-07", "2025-07-12"],
+
     "krish": ["2025-06-20", "2025-06-23"],
     "megha": ["2025-06-19", "2025-06-22"],
     "leo":   ["2025-06-21", "2025-06-24"]
@@ -216,23 +209,6 @@ def show_photographers():
         return redirect(url_for('login'))
     return render_template('photographers.html', photographers=photographers, availability_data=availability_data)
 
-import random  # make sure this is at the top
-
-@app.route('/surprise')
-def surprise():
-    if not session.get('user'):
-        return redirect(url_for('login'))
-
-    surprise_id = "eshan"
-    surprise_photographer = next((p for p in photographers if p["id"] == surprise_id), None)
-
-    if not surprise_photographer:
-        return "Photographer not found", 404
-
-    dates = availability_data.get(surprise_id, [])
-    return render_template("surprise.html", photographer=surprise_photographer, dates=dates)
-
-
 @app.route('/location')
 def location():
     if not session.get('user'):
@@ -303,20 +279,17 @@ def location():
 def support():
     if not session.get('user'):
         return redirect(url_for('login'))
-    email = session['user']
-    support_data = {}
-    if os.path.exists('support_data.json'):
-        with open('support_data.json', 'r') as f:
-            support_data = json.load(f)
+
+    message = ""
+    reply = ""
+
     if request.method == 'POST':
-        issue = request.form['issue']
-        support_data[email] = {"message": issue, "reply": ""}
-        with open('support_data.json', 'w') as f:
-            json.dump(support_data, f, indent=4)
-        return redirect(url_for('support'))
-    message = support_data.get(email, {}).get("message")
-    reply = support_data.get(email, {}).get("reply")
-    return render_template('support.html', message=message, reply=reply)
+        message = request.form.get('issue')
+        # You can process or save the message here if needed
+        reply = "Thank you for contacting us! Our team will respond shortly."
+
+    return render_template("support.html", message=message, reply=reply)
+
 
 @app.route('/admin/reply', methods=['GET', 'POST'])
 def admin_reply():

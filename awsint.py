@@ -31,7 +31,7 @@ photographers = [
 ]
 
 availability_data = {
-    "eshan": ["2025-07-03", "2025-07-07", "2025-07-12"],
+    "eshan": ["2025-07-03", "2025-07-07"],
     "krish": ["2025-06-20", "2025-06-23"],
     "megha": ["2025-06-19", "2025-06-22"],
     "leo": ["2025-06-21", "2025-06-24"]
@@ -170,16 +170,6 @@ def show_photographers():
         return redirect(url_for('login'))
     return render_template('photographers.html', photographers=photographers, availability_data=availability_data)
 
-@app.route('/surprise')
-def surprise():
-    if not session.get('user'):
-        return redirect(url_for('login'))
-    surprise_id = "eshan"
-    surprise_photographer = next((p for p in photographers if p["id"] == surprise_id), None)
-    if not surprise_photographer:
-        return "Photographer not found", 404
-    dates = availability_data.get(surprise_id, [])
-    return render_template("surprise.html", photographer=surprise_photographer, dates=dates)
 
 @app.route('/location')
 def location():
@@ -191,14 +181,17 @@ def location():
 def support():
     if not session.get('user'):
         return redirect(url_for('login'))
-    email = session['user']
+
+    message = ""
+    reply = ""
+
     if request.method == 'POST':
-        issue = request.form['issue']
-        support_table.put_item(Item={'email': email, 'message': issue, 'reply': ''})
-        return redirect(url_for('support'))
-    response = support_table.get_item(Key={'email': email})
-    item = response.get('Item', {})
-    return render_template('support.html', message=item.get('message'), reply=item.get('reply'))
+        message = request.form.get('issue')
+        # You can process or save the message here if needed
+        reply = "Thank you for contacting us! Our team will respond shortly."
+
+    return render_template("support.html", message=message, reply=reply)
+
 
 @app.route('/admin/reply', methods=['GET', 'POST'])
 def admin_reply():

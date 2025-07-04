@@ -79,53 +79,11 @@
         .back-home {
             margin-top: 30px;
         }
-
-        .surprise-card {
-            background: linear-gradient(135deg, #ff416c, #ff4b2b);
-            color: white;
-            padding: 30px 20px;
-            margin: 0 auto 50px;
-            border-radius: 15px;
-            max-width: 700px;
-            box-shadow: 0 0 25px rgba(0,0,0,0.2);
-            animation: pulse 3s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-
-        .btn-surprise {
-            background-color: white;
-            color: #ff416c;
-            font-weight: bold;
-            border: none;
-            padding: 12px 30px;
-            margin-top: 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-surprise:hover {
-            background-color: #fff0f3;
-            transform: scale(1.05);
-        }
     </style>
 </head>
 <body>
 
     <h2>Meet Our Photographers</h2>
-
-    <!-- 🎁 Surprise Photographer Section -->
-    <div class="surprise-card">
-        <h3>🎁 Surprise Your Loved Ones</h3>
-        <p>Let us take your special moments to the next level with a mystery photographer — full of creativity, flair, and love!</p>
-        <a href="{{ url_for('surprise') }}">
-            <button class="btn-surprise">🎉 Reveal Surprise Photographer</button>
-        </a>
-    </div>
 
     <!-- 📸 Photographer Cards -->
     <div class="container">
@@ -175,4 +133,3 @@
 
 </body>
 </html>
-
